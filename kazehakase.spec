@@ -22,7 +22,7 @@ Galeona.
 
 %prep
 %setup -q
-%patch -p0
+%patch -p1
 
 %build
 cp /usr/share/automake/config.sub admin

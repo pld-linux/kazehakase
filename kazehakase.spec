@@ -8,6 +8,7 @@ Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.jp/kazehakase/11115/%{name}-%{version}.tar.gz
 # Source0-md5:	72a733327f0cdef740996b6f9efdfeba
 Patch0:		%{name}-mozilla_five_home.patch
+Patch1:		%{name}-mozilla-1.7.3.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	automake
 BuildRequires:	mozilla-devel >= 1.4.1
@@ -23,9 +24,12 @@ Galeona.
 %prep
 %setup -q
 %patch0 -p1
+%patch1
 
 %build
-cp -f /usr/share/automake/config.sub admin
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure
 
 %{__make}

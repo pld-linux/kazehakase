@@ -16,7 +16,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	mozilla-devel >= 1.6
+BuildRequires:	mozilla-devel >= 5:1.6
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

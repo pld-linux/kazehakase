@@ -8,7 +8,7 @@ diff -ur kazehakase-0.1.9.orig/data/kazehakase.desktop kazehakase-0.1.9/data/kaz
 +Name[pl]=Przeglądarka Kazehakase
  Name[ja]=風博士ウェブブラウザ
  Comment=Web browser
-+Comment=Przeglądarka WWW
++Comment[pl]=Przeglądarka WWW
  Comment[ja]=ウェブブラウザ
  TryExec=kazehakase
  Exec=kazehakase %U

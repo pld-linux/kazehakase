@@ -6,7 +6,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.jp/kazehakase/11115/%{name}-%{version}.tar.gz
-# Source0-md5:	1a4f67f125657e4f630e8418ca69f4cf
+# Source0-md5:	72a733327f0cdef740996b6f9efdfeba
 Patch0:		%{name}-c++.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	automake

@@ -1,0 +1,13 @@
+--- kazehakase-0.1.9/src/kazehakase~	2004-09-04 23:31:29.555706928 +0200
++++ kazehakase-0.1.9/src/kazehakase	2004-09-04 23:43:48.760330744 +0200
+@@ -6,6 +6,10 @@
+ 	MOZILLA_HOME=$MOZILLA_FIVE_HOME
+ elif [ -f /usr/lib/chrome/comm.jar ]; then
+ 	MOZILLA_HOME=/usr/lib
++elif [ -f /usr/lib/mozilla/chrome/comm.jar ]; then
++	MOZILLA_HOME=/usr/lib/mozilla
++elif [ -f /usr/lib64/mozilla/chrome/comm.jar ]; then
++	MOZILLA_HOME=/usr/lib64/mozilla
+ else
+ 	echo "Cannot find mozilla installation directory. Please set MOZILLA_FIVE_HOME to your mozilla directory"
+ 	exit

@@ -3,14 +3,14 @@ Summary(pl):	Przegl±darka na silniku gecko
 Name:		kazehakase
 Version:	0.1.6
 Release:	2
-URL:		http://kazehakase.sourceforge.jp
+License:	GPL
+Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.jp/kazehakase/9697/%{name}-%{version}.tar.gz
 # Source0-md5:	7b2d64f688909eaf3ef57a3d2df5fffd
 Patch0:		%{name}-c++.patch
-License:	GPL
-Group:		X11/Applications/Networking
-BuildRequires:	mozilla-devel >= 1.4.1
+URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	automake
+BuildRequires:	mozilla-devel >= 1.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -25,13 +25,14 @@ Galeona.
 %patch -p1
 
 %build
-cp /usr/share/automake/config.sub admin
+cp -f /usr/share/automake/config.sub admin
 %configure
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 

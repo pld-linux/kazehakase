@@ -1,15 +1,14 @@
-diff -ur kazehakase-0.1.9.orig/data/kazehakase.desktop kazehakase-0.1.9/data/kazehakase.desktop
---- kazehakase-0.1.9.orig/data/kazehakase.desktop	2004-05-08 06:23:18.000000000 +0200
-+++ kazehakase-0.1.9/data/kazehakase.desktop	2004-09-24 21:25:51.725344512 +0200
-@@ -1,12 +1,15 @@
- [Desktop Entry]
+diff -urN kazehakase-0.2.1.org/data/kazehakase.desktop kazehakase-0.2.1/data/kazehakase.desktop
+--- kazehakase-0.2.1.org/data/kazehakase.desktop	2004-11-04 20:27:36.972728128 +0100
++++ kazehakase-0.2.1/data/kazehakase.desktop	2004-11-04 20:37:51.302335832 +0100
+@@ -2,11 +2,13 @@
  Encoding=UTF-8
  Name=Kazehakase Web Browser
-+Name[pl]=Przeglądarka Kazehakase
  Name[ja]=風博士ウェブブラウザ
++Name[pl]=Przeglądarka Kazehakase
  Comment=Web browser
-+Comment[pl]=Przeglądarka WWW
  Comment[ja]=ウェブブラウザ
++Comment[pl]=Przeglądarka WWW
  TryExec=kazehakase
  Exec=kazehakase %U
  Terminal=false
@@ -17,4 +16,3 @@ diff -ur kazehakase-0.1.9.orig/data/kazehakase.desktop kazehakase-0.1.9/data/kaz
  Icon=kazehakase-icon.png
 -Categories=Application;Network;
 +Categories=GTK;Network;WebBrowser;
-+# vi: encoding=utf-8

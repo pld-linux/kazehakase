@@ -1,14 +1,15 @@
-diff -ur kazehakase-0.1.9.orig/src/kazehakase.in kazehakase-0.1.9/src/kazehakase.in
---- kazehakase-0.1.9.orig/src/kazehakase.in	2003-08-07 13:23:09.000000000 +0200
-+++ kazehakase-0.1.9/src/kazehakase.in	2004-09-24 21:05:04.115010112 +0200
-@@ -4,8 +4,8 @@
+diff -urN kazehakase-0.2.1.org/src/kazehakase.in kazehakase-0.2.1/src/kazehakase.in
+--- kazehakase-0.2.1.org/src/kazehakase.in	2004-11-04 20:27:36.896739680 +0100
++++ kazehakase-0.2.1/src/kazehakase.in	2004-11-04 20:41:21.160432552 +0100
+@@ -4,8 +4,9 @@
  
  if test -n "$MOZILLA_FIVE_HOME"; then
  	MOZILLA_HOME=$MOZILLA_FIVE_HOME
 -elif [ -f @MOZILLA_HOME@/chrome/comm.jar ]; then
 -	MOZILLA_HOME=@MOZILLA_HOME@
 +elif [ -f @MOZILLA_HOME@/mozilla/chrome/comm.jar ]; then
-+	MOZILLA_HOME=@MOZILLA_HOME@/mozilla
++       MOZILLA_HOME=@MOZILLA_HOME@/mozilla
++	
  else
  	echo "Cannot find mozilla installation directory. Please set MOZILLA_FIVE_HOME to your mozilla directory"
  	exit

@@ -11,6 +11,7 @@ Patch0:		%{name}-mozilla_five_home.patch
 Patch1:		%{name}-mozilla-1.7.3.patch
 Patch2:		%{name}-desktop.patch
 URL:		http://kazehakase.sourceforge.jp/
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	mozilla-devel >= 1.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

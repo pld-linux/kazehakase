@@ -22,6 +22,7 @@ Galeona.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub admin
@@ -30,7 +31,6 @@ cp -f /usr/share/automake/config.sub admin
 %{__make}
 
 %install
-patch -p1 < %PATCH0
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \

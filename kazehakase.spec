@@ -10,6 +10,7 @@ Patch0:		%{name}-c++.patch
 License:	GPL
 Group:		X11/Applications/Networking
 BuildRequires:	mozilla-devel >= 1.4.1
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,6 +25,7 @@ Galeona.
 %patch -p0
 
 %build
+cp /usr/share/automake/config.sub admin
 %configure
 
 %{__make}

@@ -1,14 +1,13 @@
 Summary:	A browser with gecko engine
 Summary(pl):	Przegl±darka na silniku gecko
 Name:		kazehakase
-Version:	0.2.5
+Version:	0.2.8
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://dl.sourceforge.jp/kazehakase/13324/%{name}-%{version}.tar.gz
-# Source0-md5:	9885b0069249cc72579796d1ff4474c6
-Patch0:		%{name}-mozilla_five_home.patch
-Patch1:		%{name}-desktop.patch
+Source0:	http://dl.sourceforge.jp/kazehakase/15343/%{name}-%{version}.tar.gz
+# Source0-md5:	f7d59ee5976b6f3b4ea398e21f9ce3e0
+Patch0:		%{name}-desktop.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -30,7 +29,6 @@ Galeona.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -58,3 +56,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/%{name}.desktop
 %{_datadir}/%{name}
 %{_pixmapsdir}/*
+%{_mandir}/man?/*

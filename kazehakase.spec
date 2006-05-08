@@ -1,13 +1,17 @@
 # TODO: add subpackage for libs
+#
+# Conditional build:
+%bcond_without	firefox		# build upon mozilla 1.7 libs instead of firefox
+#
 Summary:	A browser with gecko engine
 Summary(pl):	Przegl±darka na silniku gecko
 Name:		kazehakase
-Version:	0.3.5
+Version:	0.3.7
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://prdownloads.sourceforge.jp/kazehakase/18847/%{name}-%{version}.tar.gz
-# Source0-md5:	aa7eac58718c2254050ce18d4ec86cde
+Source0:	http://prdownloads.sourceforge.jp/kazehakase/20010/%{name}-%{version}.tar.gz
+# Source0-md5:	3379ac7977d5bc34b024cdadbf37857e
 Patch0:		%{name}-desktop.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
@@ -17,7 +21,8 @@ BuildRequires:	gnutls-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	mozilla-devel >= 5:1.7
+%{?without_firefox:BuildRequires:	mozilla-devel >= 5:1.7}
+%{?with_firefox:BuildRequires:	mozilla-firefox-devel >= 1.5.0.2}
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,13 +50,19 @@ Galeona.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
+	libkazehakasedir=%{_libdir} \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# unnecessary
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig                                                                                                                                         
-%postun -p /sbin/ldconfig                                                                                                                                         
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -59,7 +70,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/%{name}
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%{_libdir}/lib*.la
 %{_desktopdir}/%{name}.desktop
 %{_datadir}/%{name}
 %{_pixmapsdir}/*

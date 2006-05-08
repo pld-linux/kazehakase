@@ -10,7 +10,7 @@ Version:	0.3.7
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://prdownloads.sourceforge.jp/kazehakase/20010/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.jp/kazehakase/20010/%{name}-%{version}.tar.gz
 # Source0-md5:	3379ac7977d5bc34b024cdadbf37857e
 Patch0:		%{name}-desktop.patch
 URL:		http://kazehakase.sourceforge.jp/

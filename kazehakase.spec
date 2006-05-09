@@ -21,7 +21,7 @@ BuildRequires:	gnutls-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-%{?without_firefox:BuildRequires:	mozilla-devel >= 5:1.7}
+%{!?with_firefox:BuildRequires:	mozilla-devel >= 5:1.7}
 %{?with_firefox:BuildRequires:	mozilla-firefox-devel >= 1.5.0.2}
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

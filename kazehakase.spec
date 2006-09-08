@@ -1,7 +1,10 @@
 # TODO: add subpackage for libs
 #
 # Conditional build:
-%bcond_without	firefox		# build upon mozilla 1.7 libs instead of firefox
+# Remember to build upon some libs (e.g. without firefox but with
+# seamonkey).
+%bcond_without	firefox		# don't build upon firefox libs
+%bcond_with	seamonkey	# build upon seamonkey libs
 #
 Summary:	A browser with gecko engine
 Summary(pl):	Przegl±darka na silniku gecko
@@ -21,8 +24,8 @@ BuildRequires:	gnutls-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-%{!?with_firefox:BuildRequires:	mozilla-devel >= 5:1.7}
 %{?with_firefox:BuildRequires:	mozilla-firefox-devel >= 1.5.0.6}
+%{?with_seamonkey:BuildRequires:	seamonkey-devel}
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

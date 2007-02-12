@@ -1,20 +1,14 @@
 # TODO: add subpackage for libs
 #
-# Conditional build:
-# Remember to build upon some libs (e.g. without firefox but with
-# seamonkey).
-%bcond_without	firefox		# don't build upon firefox libs
-%bcond_with	seamonkey	# build upon seamonkey libs
-#
 Summary:	A browser with gecko engine
 Summary(pl.UTF-8):   Przeglądarka na silniku gecko
 Name:		kazehakase
-Version:	0.4.0
+Version:	0.4.4.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://dl.sourceforge.jp/kazehakase/21535/%{name}-%{version}.tar.gz
-# Source0-md5:	6212c20bc7727c6bcbddcb9f92cc93f7
+Source0:	http://dl.sourceforge.jp/kazehakase/23789/%{name}-%{version}.tar.gz
+# Source0-md5:	16eacff48f758bcdb3719679a1af597c
 Patch0:		%{name}-desktop.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
@@ -24,9 +18,8 @@ BuildRequires:	gnutls-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-%{?with_firefox:BuildRequires:	mozilla-firefox-devel >= 1.5.0.6}
-%{?with_seamonkey:BuildRequires:	seamonkey-devel}
 BuildRequires:	pkgconfig
+BuildRequires:	xulrunner-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

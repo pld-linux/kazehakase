@@ -7,7 +7,7 @@
 %bcond_with	seamonkey	# build upon seamonkey libs
 #
 Summary:	A browser with gecko engine
-Summary(pl):	Przegl±darka na silniku gecko
+Summary(pl.UTF-8):   PrzeglÄ…darka na silniku gecko
 Name:		kazehakase
 Version:	0.4.0
 Release:	1
@@ -32,8 +32,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Kazehakase is a browser with gecko engine like Epiphany or Galeon.
 
-%description -l pl
-Kazehakase jest przegl±dark± na silniku gecko podobnie do Epiphany lub
+%description -l pl.UTF-8
+Kazehakase jest przeglÄ…darkÄ… na silniku gecko podobnie do Epiphany lub
 Galeona.
 
 %prep

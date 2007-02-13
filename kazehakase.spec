@@ -1,7 +1,7 @@
 # TODO: add subpackage for libs
 #
 Summary:	A browser with gecko engine
-Summary(pl.UTF-8):   Przeglądarka na silniku gecko
+Summary(pl.UTF-8):	Przeglądarka na silniku gecko
 Name:		kazehakase
 Version:	0.4.4.1
 Release:	1

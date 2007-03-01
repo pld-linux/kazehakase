@@ -1,17 +1,15 @@
 # TODO: add subpackage for libs
 #
-# Conditional build:
-%bcond_without	firefox		# build upon mozilla 1.7 libs instead of firefox
 #
 Summary:	A browser with gecko engine
 Summary(pl):	Przegl±darka na silniku gecko
 Name:		kazehakase
-Version:	0.4.0
+Version:	0.4.4.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://dl.sourceforge.jp/kazehakase/21535/%{name}-%{version}.tar.gz
-# Source0-md5:	6212c20bc7727c6bcbddcb9f92cc93f7
+Source0:	http://dl.sourceforge.jp/kazehakase/23789/%{name}-%{version}.tar.gz
+# Source0-md5:	16eacff48f758bcdb3719679a1af597c
 Patch0:		%{name}-desktop.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
@@ -21,8 +19,7 @@ BuildRequires:	gnutls-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-%{!?with_firefox:BuildRequires:	mozilla-devel >= 5:1.7}
-%{?with_firefox:BuildRequires:	mozilla-firefox-devel >= 1.5.0.6}
+BuildRequires:	xulrunner-devel
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

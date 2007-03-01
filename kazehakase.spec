@@ -1,18 +1,26 @@
+# TODO: add subpackage for libs
+#
+#
 Summary:	A browser with gecko engine
 Summary(pl):	Przegl±darka na silniku gecko
 Name:		kazehakase
-Version:	0.2.1
+Version:	0.4.4.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://dl.sourceforge.jp/kazehakase/12026/%{name}-%{version}.tar.gz
-# Source0-md5:	c89f80966fc30b233a7cea92d22f7fa0
-Patch0:		%{name}-mozilla_five_home.patch
-Patch1:		%{name}-desktop.patch
+Source0:	http://dl.sourceforge.jp/kazehakase/23789/%{name}-%{version}.tar.gz
+# Source0-md5:	16eacff48f758bcdb3719679a1af597c
+Patch0:		%{name}-desktop.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	mozilla-devel >= 1.4.1
+BuildRequires:	gettext-devel
+BuildRequires:	gnutls-devel
+BuildRequires:	gtk+2-devel
+BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
+BuildRequires:	xulrunner-devel
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -25,9 +33,9 @@ Galeona.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
@@ -39,16 +47,27 @@ Galeona.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
+	libkazehakasedir=%{_libdir} \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# unnecessary
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files 
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README README.ja AUTHORS ChangeLog COPYING.README TODO.ja
 %{_sysconfdir}/%{name}
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_desktopdir}/%{name}.desktop
 %{_datadir}/%{name}
 %{_pixmapsdir}/*
+%{_mandir}/man?/*

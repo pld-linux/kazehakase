@@ -1,15 +1,17 @@
 # TODO: add subpackage for libs
 #
+#
 Summary:	A browser with gecko engine
-Summary(pl.UTF-8):	PrzeglÄ…darka na silniku gecko
+Summary(pl):	Przegl±darka na silniku gecko
 Name:		kazehakase
 Version:	0.4.4.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.jp/kazehakase/23789/%{name}-%{version}.tar.gz
 # Source0-md5:	16eacff48f758bcdb3719679a1af597c
 Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-agent.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -18,20 +20,21 @@ BuildRequires:	gnutls-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	pkgconfig
 BuildRequires:	xulrunner-devel
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Kazehakase is a browser with gecko engine like Epiphany or Galeon.
 
-%description -l pl.UTF-8
-Kazehakase jest przeglÄ…darkÄ… na silniku gecko podobnie do Epiphany lub
+%description -l pl
+Kazehakase jest przegl±dark± na silniku gecko podobnie do Epiphany lub
 Galeona.
 
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}

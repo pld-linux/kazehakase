@@ -67,9 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README README.ja AUTHORS ChangeLog COPYING.README TODO.ja
 %{_sysconfdir}/%{name}
-%{_libdir}/%{name}
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/embed
 %attr(755,root,root) %{_libdir}/%{name}/embed/*.so
 %{_desktopdir}/%{name}.desktop
 %{_datadir}/%{name}

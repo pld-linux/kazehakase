@@ -3,13 +3,14 @@
 Summary:	A browser with gecko engine
 Summary(pl.UTF-8):	Przeglądarka na silniku gecko
 Name:		kazehakase
-Version:	0.4.4.1
+Version:	0.4.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://dl.sourceforge.jp/kazehakase/23789/%{name}-%{version}.tar.gz
-# Source0-md5:	16eacff48f758bcdb3719679a1af597c
+Source0:	http://dl.sourceforge.jp/kazehakase/24791/%{name}-%{version}.tar.gz
+# Source0-md5:	2171f02d58a575e148436c7102686afb
 Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-saving_session.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -32,10 +33,11 @@ Galeona.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I macros
 %{__autoconf}
 %{__automake}
 %configure
@@ -51,6 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # unnecessary
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/embed/*.la
 
 %find_lang %{name}
 
@@ -64,8 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README README.ja AUTHORS ChangeLog COPYING.README TODO.ja
 %{_sysconfdir}/%{name}
+%{_libdir}/%{name}
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/%{name}/embed/*.so
 %{_desktopdir}/%{name}.desktop
 %{_datadir}/%{name}
 %{_pixmapsdir}/*

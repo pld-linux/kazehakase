@@ -4,7 +4,7 @@ Summary:	A browser with gecko engine
 Summary(pl.UTF-8):	Przeglądarka na silniku gecko
 Name:		kazehakase
 Version:	0.4.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.jp/kazehakase/25149/%{name}-%{version}.tar.gz
@@ -20,7 +20,11 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	xulrunner-devel
+%requires_eq_to	xulrunner xulrunner-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# we have strict deps for it
+%define		_noautoreq	libxpcom.so
 
 %description
 Kazehakase is a browser with gecko engine like Epiphany or Galeon.

@@ -57,8 +57,8 @@ diff -ur kazehakase-0.4.7.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase
 +		mozilla_prefs_delete ("general.useragent.override");
 +		mozilla_prefs_set_string ("general.useragent.extra.kazehakase", "Kazehakase/" VERSION);
 +		mozilla_prefs_set_string ("general.useragent.vendor", "PLD");
-+		mozilla_prefs_set_string ("general.useragent.vendorSub", "3.0");
-+		mozilla_prefs_set_string ("general.useragent.vendorComment", "Th");
++		mozilla_prefs_set_string ("general.useragent.vendorSub", "2.0");
++		mozilla_prefs_set_string ("general.useragent.vendorComment", "Ac");
  	}
 -	mozilla_prefs_set_string("general.useragent.override", tmp_string);
  }

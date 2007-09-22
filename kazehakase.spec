@@ -3,15 +3,15 @@
 Summary:	A browser with gecko engine
 Summary(pl.UTF-8):	Przeglądarka na silniku gecko
 Name:		kazehakase
-Version:	0.4.7
-Release:	4
+Version:	0.4.8
+Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://dl.sourceforge.jp/kazehakase/25610/%{name}-%{version}.tar.gz
-# Source0-md5:	44d7105f394b982661ba0567a0d23b90
+Source0:	http://dl.sourceforge.jp/kazehakase/26898/%{name}-%{version}.tar.gz
+# Source0-md5:	a9f58314392b488374bba1cf2d21deec
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-agent.patch
-Patch2:		%{name}-g_regex_free.patch
+Patch2:		%{name}-deprecated.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
 BuildRequires:	automake

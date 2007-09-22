@@ -7,7 +7,7 @@ Version:	0.4.8
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://dl.sourceforge.jp/kazehakase/26898/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.jp/kazehakase/26898/%{name}-%{version}.tar.gz
 # Source0-md5:	a9f58314392b488374bba1cf2d21deec
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-agent.patch

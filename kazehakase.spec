@@ -3,14 +3,14 @@
 Summary:	A browser with gecko engine
 Summary(pl.UTF-8):	Przeglądarka na silniku gecko
 Name:		kazehakase
-Version:	0.4.8
-Release:	2
+Version:	0.5.0
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://downloads.sourceforge.jp/kazehakase/26898/%{name}-%{version}.tar.gz
-# Source0-md5:	a9f58314392b488374bba1cf2d21deec
+Source0:	http://downloads.sourceforge.jp/kazehakase/27774/%{name}-%{version}.tar.gz
+# Source0-md5:	27cb87e89a76a104630bf5838852d80b
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-agent.patch
+#Patch1:		%{name}-agent.patch
 Patch2:		%{name}-deprecated.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
@@ -21,7 +21,7 @@ BuildRequires:	gtk+2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	xulrunner-devel
+BuildRequires:	xulrunner-gtk-devel
 %requires_eq_to	xulrunner xulrunner-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -38,7 +38,7 @@ Galeona.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 %patch2 -p1
 
 %build

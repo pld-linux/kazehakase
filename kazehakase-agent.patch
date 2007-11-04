@@ -1,6 +1,6 @@
-diff -ur kazehakase-0.4.7.orig/etc/kzrc kazehakase-0.4.7.agent/etc/kzrc
---- kazehakase-0.4.7.orig/etc/kzrc	2007-07-13 19:18:59.000000000 +0200
-+++ kazehakase-0.4.7.agent/etc/kzrc	2007-07-13 19:19:41.000000000 +0200
+diff -ur kazehakase-0.5.0.orig/etc/kzrc kazehakase-0.5.0/etc/kzrc
+--- kazehakase-0.5.0.orig/etc/kzrc	2007-10-28 16:23:53.000000000 +0100
++++ kazehakase-0.5.0/etc/kzrc	2007-11-04 11:29:03.000000000 +0100
 @@ -1,8 +1,6 @@
  # Encoding: UTF-8
  
@@ -21,10 +21,10 @@ diff -ur kazehakase-0.4.7.orig/etc/kzrc kazehakase-0.4.7.agent/etc/kzrc
  [MainWindow]
  width=720
  height=600
-diff -ur kazehakase-0.4.7.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase-0.4.7.agent/module/embed/gecko/kz-gecko-single.cpp
---- kazehakase-0.4.7.orig/module/embed/gecko/kz-gecko-single.cpp	2007-07-13 19:19:00.000000000 +0200
-+++ kazehakase-0.4.7.agent/module/embed/gecko/kz-gecko-single.cpp	2007-07-13 19:19:41.000000000 +0200
-@@ -300,20 +300,6 @@
+diff -ur kazehakase-0.5.0.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase-0.5.0/module/embed/gecko/kz-gecko-single.cpp
+--- kazehakase-0.5.0.orig/module/embed/gecko/kz-gecko-single.cpp	2007-10-28 16:23:50.000000000 +0100
++++ kazehakase-0.5.0/module/embed/gecko/kz-gecko-single.cpp	2007-11-04 11:35:35.000000000 +0100
+@@ -304,22 +304,6 @@
  }
  
  static void
@@ -35,9 +35,11 @@ diff -ur kazehakase-0.4.7.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase
 -	system = kz_utils_get_system_name();
 -
 -	g_snprintf(user_agent, size,
--		   "Mozilla/5.0 (X11; %s; U;) Gecko/%d Kazehakase/"  VERSION,
+-		   "Mozilla/5.0 (X11; U; %s; rv:%s) Gecko/%d Kazehakase/%s",
 -		   system,
--		   NS_BUILD_ID/100);
+-		   MOZILLA_VERSION,
+-		   NS_BUILD_ID/100,
+-		   VERSION);
 -	g_free (system);
 -}
 -
@@ -45,7 +47,7 @@ diff -ur kazehakase-0.4.7.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase
  set_user_agent (KzProfile *profile)
  {
  	gchar tmp_string[1024];
-@@ -326,12 +312,16 @@
+@@ -332,12 +316,16 @@
  		value = kz_profile_get_value(profile, "Global", "user_agent", 
  				&tmp_string, G_N_ELEMENTS(tmp_string),
  				KZ_PROFILE_VALUE_TYPE_STRING);
@@ -64,9 +66,9 @@ diff -ur kazehakase-0.4.7.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase
  }
  
  static void
-diff -ur kazehakase-0.4.7.orig/module/embed/gecko/mozilla-prefs.cpp kazehakase-0.4.7.agent/module/embed/gecko/mozilla-prefs.cpp
---- kazehakase-0.4.7.orig/module/embed/gecko/mozilla-prefs.cpp	2007-07-13 19:19:00.000000000 +0200
-+++ kazehakase-0.4.7.agent/module/embed/gecko/mozilla-prefs.cpp	2007-07-13 19:19:41.000000000 +0200
+diff -ur kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.cpp kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.cpp
+--- kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.cpp	2007-10-28 16:23:50.000000000 +0100
++++ kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.cpp	2007-11-04 11:38:50.000000000 +0100
 @@ -449,6 +449,26 @@
  }
  
@@ -85,7 +87,7 @@ diff -ur kazehakase-0.4.7.orig/module/embed/gecko/mozilla-prefs.cpp kazehakase-0
 +	{
 +		nsresult rv = pref->ClearUserPref(preference_name);
 +		return NS_SUCCEEDED(rv) ? TRUE : FALSE;
-+	}
++}
 +
 +	return FALSE;
 +}
@@ -94,9 +96,9 @@ diff -ur kazehakase-0.4.7.orig/module/embed/gecko/mozilla-prefs.cpp kazehakase-0
  void
  mozilla_prefs_set_use_proxy (gboolean use)
  {
-diff -ur kazehakase-0.4.7.orig/module/embed/gecko/mozilla-prefs.h kazehakase-0.4.7.agent/module/embed/gecko/mozilla-prefs.h
---- kazehakase-0.4.7.orig/module/embed/gecko/mozilla-prefs.h	2007-07-13 19:19:00.000000000 +0200
-+++ kazehakase-0.4.7.agent/module/embed/gecko/mozilla-prefs.h	2007-07-13 19:19:41.000000000 +0200
+diff -ur kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.h kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.h
+--- kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.h	2007-10-28 16:23:50.000000000 +0100
++++ kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.h	2007-11-04 11:39:52.000000000 +0100
 @@ -46,6 +46,7 @@
  					gboolean     new_boolean_value);
  gboolean mozilla_prefs_set_int         (const char  *preference_name,

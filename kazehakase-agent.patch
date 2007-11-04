@@ -1,6 +1,6 @@
 diff -ur kazehakase-0.5.0.orig/etc/kzrc kazehakase-0.5.0/etc/kzrc
 --- kazehakase-0.5.0.orig/etc/kzrc	2007-10-28 16:23:53.000000000 +0100
-+++ kazehakase-0.5.0/etc/kzrc	2007-11-04 11:29:03.000000000 +0100
++++ kazehakase-0.5.0/etc/kzrc	2007-11-04 13:43:15.000000000 +0100
 @@ -1,8 +1,6 @@
  # Encoding: UTF-8
  
@@ -23,7 +23,7 @@ diff -ur kazehakase-0.5.0.orig/etc/kzrc kazehakase-0.5.0/etc/kzrc
  height=600
 diff -ur kazehakase-0.5.0.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase-0.5.0/module/embed/gecko/kz-gecko-single.cpp
 --- kazehakase-0.5.0.orig/module/embed/gecko/kz-gecko-single.cpp	2007-10-28 16:23:50.000000000 +0100
-+++ kazehakase-0.5.0/module/embed/gecko/kz-gecko-single.cpp	2007-11-04 11:35:35.000000000 +0100
++++ kazehakase-0.5.0/module/embed/gecko/kz-gecko-single.cpp	2007-11-04 13:46:21.000000000 +0100
 @@ -304,22 +304,6 @@
  }
  
@@ -68,7 +68,7 @@ diff -ur kazehakase-0.5.0.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase
  static void
 diff -ur kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.cpp kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.cpp
 --- kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.cpp	2007-10-28 16:23:50.000000000 +0100
-+++ kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.cpp	2007-11-04 11:38:50.000000000 +0100
++++ kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.cpp	2007-11-04 13:43:24.000000000 +0100
 @@ -449,6 +449,26 @@
  }
  
@@ -87,7 +87,7 @@ diff -ur kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.cpp kazehakase-0
 +	{
 +		nsresult rv = pref->ClearUserPref(preference_name);
 +		return NS_SUCCEEDED(rv) ? TRUE : FALSE;
-+}
++	}
 +
 +	return FALSE;
 +}
@@ -98,7 +98,7 @@ diff -ur kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.cpp kazehakase-0
  {
 diff -ur kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.h kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.h
 --- kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.h	2007-10-28 16:23:50.000000000 +0100
-+++ kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.h	2007-11-04 11:39:52.000000000 +0100
++++ kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.h	2007-11-04 13:43:24.000000000 +0100
 @@ -46,6 +46,7 @@
  					gboolean     new_boolean_value);
  gboolean mozilla_prefs_set_int         (const char  *preference_name,

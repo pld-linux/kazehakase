@@ -1,4 +1,4 @@
-# TODO: add subpackage for libs
+# 
 #
 Summary:	A browser with gecko engine
 Summary(pl.UTF-8):	Przeglądarka na silniku gecko
@@ -22,6 +22,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	xulrunner-devel
+Requires:	%{name}-libs = %{version}-%{release}
 %requires_eq_to	xulrunner xulrunner-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -34,6 +35,17 @@ Kazehakase is a browser with gecko engine like Epiphany or Galeon.
 %description -l pl.UTF-8
 Kazehakase jest przeglądarką na silniku gecko podobnie do Epiphany lub
 Galeona.
+
+%package libs
+Summary:	Kazehakase libraries
+Summary(pl.UTF-8):	Biblioteki Kazehakase
+Group:		Libraries
+
+%description libs
+This package contains Kazehakase libraries.
+
+%description libs -l pl.UTF-8
+Pakiet zawiera biblioteki Kazehakase.
 
 %prep
 %setup -q
@@ -66,19 +78,22 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/embed/*.la
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post   libs -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README README.ja AUTHORS ChangeLog COPYING.README TODO.ja
 %{_sysconfdir}/%{name}
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
-%dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/embed
-%attr(755,root,root) %{_libdir}/%{name}/embed/*.so
 %{_desktopdir}/%{name}.desktop
 %{_datadir}/%{name}
 %{_pixmapsdir}/*
 %{_mandir}/man?/*
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/embed
+%attr(755,root,root) %{_libdir}/%{name}/embed/*.so

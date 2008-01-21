@@ -47,7 +47,7 @@ diff -ur kazehakase-0.5.0.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase
  set_user_agent (KzProfile *profile)
  {
  	gchar tmp_string[1024];
-@@ -332,12 +316,16 @@
+@@ -332,12 +316,15 @@
  		value = kz_profile_get_value(profile, "Global", "user_agent", 
  				&tmp_string, G_N_ELEMENTS(tmp_string),
  				KZ_PROFILE_VALUE_TYPE_STRING);
@@ -59,8 +59,7 @@ diff -ur kazehakase-0.5.0.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase
 +		mozilla_prefs_delete ("general.useragent.override");
 +		mozilla_prefs_set_string ("general.useragent.extra.kazehakase", "Kazehakase/" VERSION);
 +		mozilla_prefs_set_string ("general.useragent.vendor", "PLD");
-+		mozilla_prefs_set_string ("general.useragent.vendorSub", "3.0");
-+		mozilla_prefs_set_string ("general.useragent.vendorComment", "Th");
++		mozilla_prefs_set_string ("general.useragent.vendorSub", "Titanium");
  	}
 -	mozilla_prefs_set_string("general.useragent.override", tmp_string);
  }

@@ -1,6 +1,6 @@
-diff -ur kazehakase-0.5.0.orig/etc/kzrc kazehakase-0.5.0/etc/kzrc
---- kazehakase-0.5.0.orig/etc/kzrc	2007-10-28 16:23:53.000000000 +0100
-+++ kazehakase-0.5.0/etc/kzrc	2007-11-04 13:43:15.000000000 +0100
+diff -uNr kazehakase-0.5.3orig/etc/kzrc kazehakase-0.5.3/etc/kzrc
+--- kazehakase-0.5.3orig/etc/kzrc	2008-02-29 14:49:34.000000000 +0100
++++ kazehakase-0.5.3/etc/kzrc	2008-03-20 17:32:37.000000000 +0100
 @@ -1,8 +1,6 @@
  # Encoding: UTF-8
  
@@ -21,89 +21,15 @@ diff -ur kazehakase-0.5.0.orig/etc/kzrc kazehakase-0.5.0/etc/kzrc
  [MainWindow]
  width=720
  height=600
-diff -ur kazehakase-0.5.0.orig/module/embed/gecko/kz-gecko-single.cpp kazehakase-0.5.0/module/embed/gecko/kz-gecko-single.cpp
---- kazehakase-0.5.0.orig/module/embed/gecko/kz-gecko-single.cpp	2007-10-28 16:23:50.000000000 +0100
-+++ kazehakase-0.5.0/module/embed/gecko/kz-gecko-single.cpp	2007-11-04 13:46:21.000000000 +0100
-@@ -304,22 +304,6 @@
- }
- 
- static void
--build_user_agent (gchar *user_agent, gint size)
--{
--	gchar *system;
--
--	system = kz_utils_get_system_name();
--
--	g_snprintf(user_agent, size,
--		   "Mozilla/5.0 (X11; U; %s; rv:%s) Gecko/%d Kazehakase/%s",
--		   system,
--		   MOZILLA_VERSION,
--		   NS_BUILD_ID/100,
--		   VERSION);
--	g_free (system);
--}
--
--static void
- set_user_agent (KzProfile *profile)
- {
- 	gchar tmp_string[1024];
-@@ -332,12 +316,16 @@
- 		value = kz_profile_get_value(profile, "Global", "user_agent", 
- 				&tmp_string, G_N_ELEMENTS(tmp_string),
- 				KZ_PROFILE_VALUE_TYPE_STRING);
-+		mozilla_prefs_set_string("general.useragent.override", tmp_string);
- 	}
- 	else /* set default */
- 	{
--		build_user_agent(tmp_string, G_N_ELEMENTS(tmp_string));
-+		mozilla_prefs_delete ("general.useragent.override");
-+		mozilla_prefs_set_string ("general.useragent.extra.kazehakase", "Kazehakase/" VERSION);
+diff -uNr kazehakase-0.5.3orig/module/embed/gecko/kz-gecko-single.cpp kazehakase-0.5.3/module/embed/gecko/kz-gecko-single.cpp
+--- kazehakase-0.5.3orig/module/embed/gecko/kz-gecko-single.cpp	2008-02-29 14:49:27.000000000 +0100
++++ kazehakase-0.5.3/module/embed/gecko/kz-gecko-single.cpp	2008-03-20 17:29:00.000000000 +0100
+@@ -323,6 +323,8 @@
+ 		mozilla_prefs_clear("general.useragent.override");
+ 		mozilla_prefs_set_string("general.useragent.extra.kazehakase",
+ 					 "Kazehakase/" VERSION);
 +		mozilla_prefs_set_string ("general.useragent.vendor", "PLD");
-+		mozilla_prefs_set_string ("general.useragent.vendorSub", "3.0");
-+		mozilla_prefs_set_string ("general.useragent.vendorComment", "Th");
++		mozilla_prefs_set_string ("general.useragent.vendorSub", "Titanium");
  	}
--	mozilla_prefs_set_string("general.useragent.override", tmp_string);
  }
- 
- static void
-diff -ur kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.cpp kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.cpp
---- kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.cpp	2007-10-28 16:23:50.000000000 +0100
-+++ kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.cpp	2007-11-04 13:43:24.000000000 +0100
-@@ -449,6 +449,26 @@
- }
- 
- 
-+gboolean
-+mozilla_prefs_delete (const char *preference_name)
-+{
-+	g_return_val_if_fail(preference_name != NULL, FALSE);
-+
-+	nsCOMPtr<nsIPrefService> prefService = 
-+				do_GetService(NS_PREFSERVICE_CONTRACTID);
-+	nsCOMPtr<nsIPrefBranch> pref;
-+	prefService->GetBranch("", getter_AddRefs(pref));
-+
-+	if (pref)
-+	{
-+		nsresult rv = pref->ClearUserPref(preference_name);
-+		return NS_SUCCEEDED(rv) ? TRUE : FALSE;
-+	}
-+
-+	return FALSE;
-+}
-+
-+
- void
- mozilla_prefs_set_use_proxy (gboolean use)
- {
-diff -ur kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.h kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.h
---- kazehakase-0.5.0.orig/module/embed/gecko/mozilla-prefs.h	2007-10-28 16:23:50.000000000 +0100
-+++ kazehakase-0.5.0/module/embed/gecko/mozilla-prefs.h	2007-11-04 13:43:24.000000000 +0100
-@@ -46,6 +46,7 @@
- 					gboolean     new_boolean_value);
- gboolean mozilla_prefs_set_int         (const char  *preference_name,
- 					int          new_int_value);
-+gboolean mozilla_prefs_delete          (const char  *preference_name);
- void     mozilla_prefs_set_proxy       (KzProxyItem *item);
- void     mozilla_prefs_set_use_proxy   (gboolean use);
  

@@ -27,7 +27,7 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 %{?with_gecko:BuildRequires:	xulrunner-devel}
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	engine_plugin
+Requires:	kazehakase_engine
 %requires_eq_to	xulrunner xulrunner-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -59,7 +59,7 @@ Summary:	Gecko plugin engine for Kazehakase
 Summary(pl.UTF-8):	Plugin gecko dla Kazehakase
 Group:		X11/Applications/Networking
 Requires:	xulrunner
-Provides:	engine_plugin
+Provides:	kazehakase_engine
 
 %description plugin-gecko
 This plugin provides gecko rendering engine support.
@@ -71,7 +71,7 @@ Ten plugin dodaje wsparcie dla silnika renderującego gecko.
 Summary:	Webkit plugin engine for Kazehakase
 Summary(pl.UTF-8):	Plugin webkit dla Kazehakase
 Group:		X11/Applications/Networking
-Provides:	engine_plugin
+Provides:	kazehakase_engine
 
 %description plugin-webkit
 This plugin provides webkit rendering engine support.

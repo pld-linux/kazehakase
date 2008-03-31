@@ -1,10 +1,10 @@
 #
 #Conditional builds
-%bcond_without	gecko	#Build without gecko support
-%bcond_without	webkit	#Build without webkit support
+%bcond_without	gecko	# build without gecko support
+%bcond_without	webkit	# build without webkit support
 #
 Summary:	A browser with multiple rendering engines support
-Summary(pl.UTF-8):	Przeglądarka wspierająca wile silników renderujących
+Summary(pl.UTF-8):	Przeglądarka obsługująca wiele silników renderujących
 Name:		kazehakase
 Version:	0.5.4
 Release:	1
@@ -36,12 +36,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Kazehakase is a browser which allow use many rendering engines. For
-now it support only geco (like Epiphany or Galeon) and webkit engines.
+now it support only Gecko (like Epiphany or Galeon) and webkit engines.
 
 %description -l pl.UTF-8
 Kazehakase jest przeglądarką, która pozwala na używanie wielu
-silników renderujących. Na dzień dzisiejszy wspiera silniki geco
-(takie jak u Epiphany lub Galeona ) oraz webkit.
+silników renderujących. Na dzień dzisiejszy obsługuje silniki Gecko
+(taki jak w Epiphany lub Galeonie) oraz webkit.
 
 %package libs
 Summary:	Kazehakase libraries
@@ -56,20 +56,20 @@ Pakiet zawiera biblioteki Kazehakase.
 
 %package plugin-gecko
 Summary:	Gecko plugin engine for Kazehakase
-Summary(pl.UTF-8):	Plugin gecko dla Kazehakase
+Summary(pl.UTF-8):	Wtyczka Gecko dla Kazehakase
 Group:		X11/Applications/Networking
 Requires:	xulrunner
 Provides:	kazehakase_engine
 
 %description plugin-gecko
-This plugin provides gecko rendering engine support.
+This plugin provides Gecko rendering engine support.
 
 %description plugin-gecko -l pl.UTF-8
-Ten plugin dodaje wsparcie dla silnika renderującego gecko.
+Ta wtyczka dodaje obsługę silnika renderującego Gecko.
 
 %package plugin-webkit
 Summary:	Webkit plugin engine for Kazehakase
-Summary(pl.UTF-8):	Plugin webkit dla Kazehakase
+Summary(pl.UTF-8):	Wtyczka webkit dla Kazehakase
 Group:		X11/Applications/Networking
 Provides:	kazehakase_engine
 
@@ -77,8 +77,7 @@ Provides:	kazehakase_engine
 This plugin provides webkit rendering engine support.
 
 %description plugin-webkit -l pl.UTF-8
-Ten plugin dodaje wsparcie dla silnika renderującego webkit.
-
+Ta wtyczka dodaje obsługę silnika renderującego webkit.
 
 %prep
 %setup -q
@@ -131,7 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.so.*
 %dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/embed/
+%dir %{_libdir}/%{name}/embed
 
 %if %{with_gecko}
 %files plugin-gecko

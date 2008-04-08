@@ -24,13 +24,12 @@ diff -uNr kazehakase-0.5.3orig/etc/kzrc kazehakase-0.5.3/etc/kzrc
 diff -uNr kazehakase-0.5.3orig/module/embed/gecko/kz-gecko-single.cpp kazehakase-0.5.3/module/embed/gecko/kz-gecko-single.cpp
 --- kazehakase-0.5.3orig/module/embed/gecko/kz-gecko-single.cpp	2008-02-29 14:49:27.000000000 +0100
 +++ kazehakase-0.5.3/module/embed/gecko/kz-gecko-single.cpp	2008-03-20 17:29:00.000000000 +0100
-@@ -323,6 +323,9 @@
+@@ -323,6 +323,8 @@
  		mozilla_prefs_clear("general.useragent.override");
  		mozilla_prefs_set_string("general.useragent.extra.kazehakase",
  					 "Kazehakase/" VERSION);
 +		mozilla_prefs_set_string ("general.useragent.vendor", "PLD");
-+		mozilla_prefs_set_string ("general.useragent.vendorSub", "3.0");
-+		mozilla_prefs_set_string ("general.useragent.vendorComment", "Th");
++		mozilla_prefs_set_string ("general.useragent.vendorSub", "Titanium");
  	}
  }
  

@@ -13,8 +13,9 @@ Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.jp/kazehakase/30219/%{name}-%{version}.tar.gz
 # Source0-md5:	75f8afb9ddf4493c3a1fb4eb38a044df
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-agent.patch
-Patch2:		%{name}-deprecated.patch
+Patch1:		%{name}-deprecated.patch
+Patch2:		%{name}-ti-agent.patch
+Patch3:		%{name}-agent.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -25,6 +26,7 @@ BuildRequires:	gtk+2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	rpm >= 4.4.9-56
 %{?with_gecko:BuildRequires:	xulrunner-devel}
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	kazehakase_engine
@@ -83,7 +85,11 @@ Ta wtyczka dodaje obsługę silnika renderującego webkit.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%if "%{pld_release}" == "ti"
 %patch2 -p1
+%else
+%patch3 -p1
+%endif
 
 %build
 %{__libtoolize}

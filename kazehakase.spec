@@ -6,16 +6,17 @@
 Summary:	A browser with multiple rendering engines support
 Summary(pl.UTF-8):	Przeglądarka obsługująca wiele silników renderujących
 Name:		kazehakase
-Version:	0.5.4
-Release:	5
+Version:	0.5.5
+Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://downloads.sourceforge.jp/kazehakase/30219/%{name}-%{version}.tar.gz
-# Source0-md5:	75f8afb9ddf4493c3a1fb4eb38a044df
+Source0:	http://downloads.sourceforge.jp/kazehakase/32341/%{name}-%{version}.tar.gz
+# Source0-md5:	a140695fca0782372763480bd8bad8e7
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-deprecated.patch
 Patch2:		%{name}-ti-agent.patch
 Patch3:		%{name}-agent.patch
+Patch4:		%{name}-libxul.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -90,6 +91,7 @@ Ta wtyczka dodaje obsługę silnika renderującego webkit.
 %else
 %patch3 -p1
 %endif
+%patch4 -p1
 
 %build
 %{__libtoolize}

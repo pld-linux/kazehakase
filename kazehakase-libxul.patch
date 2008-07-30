@@ -1,0 +1,54 @@
+diff -ur kazehakase-0.5.5.orig/macros/gecko.m4 kazehakase-0.5.5/macros/gecko.m4
+--- kazehakase-0.5.5.orig/macros/gecko.m4	2008-07-29 16:15:29.000000000 +0200
++++ kazehakase-0.5.5/macros/gecko.m4	2008-07-30 10:38:30.000000000 +0200
+@@ -290,9 +290,6 @@
+   
+   MOZILLA_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir $GECKO_MODULE`"
+   mozilla_include_type="`$PKG_CONFIG --variable=includetype $GECKO_MODULE`"
+-  if test x"$mozilla_include_type" = "xunstable"; then
+-    MOZILLA_INCLUDE_ROOT="$MOZILLA_INCLUDE_ROOT/unstable"
+-  fi
+   AC_SUBST(MOZILLA_INCLUDE_ROOT)
+   
+   MOZILLA_HOME="`$PKG_CONFIG --variable=libdir $GECKO_MODULE`"
+diff -ur kazehakase-0.5.5.orig/module/embed/gecko/gtkmozembed/nsProfileDirServiceProvider2.cpp kazehakase-0.5.5/module/embed/gecko/gtkmozembed/nsProfileDirServiceProvider2.cpp
+--- kazehakase-0.5.5.orig/module/embed/gecko/gtkmozembed/nsProfileDirServiceProvider2.cpp	2008-07-29 16:15:30.000000000 +0200
++++ kazehakase-0.5.5/module/embed/gecko/gtkmozembed/nsProfileDirServiceProvider2.cpp	2008-07-30 10:38:30.000000000 +0200
+@@ -306,26 +306,6 @@
+         rv = EnsureProfileFileExists(localFile, domainDir);
+     }
+   }
+-  else if (strcmp(prop, NS_APP_MAIL_50_DIR) == 0) {
+-    rv = domainDir->Clone(getter_AddRefs(localFile));
+-    if (NS_SUCCEEDED(rv))
+-      rv = localFile->AppendNative(MAIL_DIR_50_NAME);
+-  }
+-  else if (strcmp(prop, NS_APP_IMAP_MAIL_50_DIR) == 0) {
+-    rv = domainDir->Clone(getter_AddRefs(localFile));
+-    if (NS_SUCCEEDED(rv))
+-      rv = localFile->AppendNative(IMAP_MAIL_DIR_50_NAME);
+-  }
+-  else if (strcmp(prop, NS_APP_NEWS_50_DIR) == 0) {
+-    rv = domainDir->Clone(getter_AddRefs(localFile));
+-    if (NS_SUCCEEDED(rv))
+-      rv = localFile->AppendNative(NEWS_DIR_50_NAME);
+-  }
+-  else if (strcmp(prop, NS_APP_MESSENGER_FOLDER_CACHE_50_DIR) == 0) {
+-    rv = domainDir->Clone(getter_AddRefs(localFile));
+-    if (NS_SUCCEEDED(rv))
+-      rv = localFile->AppendNative(MSG_FOLDER_CACHE_DIR_50_NAME);
+-  }
+   else if (strcmp(prop, NS_APP_STORAGE_50_FILE) == 0) {
+     rv = domainDir->Clone(getter_AddRefs(localFile));
+     if (NS_SUCCEEDED(rv))
+@@ -518,10 +498,6 @@
+   (void) directoryService->Undefine(NS_APP_BOOKMARKS_50_FILE);
+   (void) directoryService->Undefine(NS_APP_DOWNLOADS_50_FILE);
+   (void) directoryService->Undefine(NS_APP_SEARCH_50_FILE);
+-  (void) directoryService->Undefine(NS_APP_MAIL_50_DIR);
+-  (void) directoryService->Undefine(NS_APP_IMAP_MAIL_50_DIR);
+-  (void) directoryService->Undefine(NS_APP_NEWS_50_DIR);
+-  (void) directoryService->Undefine(NS_APP_MESSENGER_FOLDER_CACHE_50_DIR);
+ 
+   return NS_OK;
+ }

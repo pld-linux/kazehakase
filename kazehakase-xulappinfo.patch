@@ -1,0 +1,252 @@
+diff -urN kazehakase-0.5.5.orig/configure.ac kazehakase-0.5.5/configure.ac
+--- kazehakase-0.5.5.orig/configure.ac	2008-07-29 16:15:32.000000000 +0200
++++ kazehakase-0.5.5/configure.ac	2008-07-31 12:19:21.000000000 +0200
+@@ -6,6 +6,11 @@
+ AM_CONFIG_HEADER(config.h)
+ 
+ AC_CANONICAL_HOST
++AC_DEFINE_UNQUOTED([KZ_HOST],["$host"],[The host])
++AC_DEFINE_UNQUOTED([KZ_HOST_CPU],["$host_cpu"],[The host CPU type])
++AC_DEFINE_UNQUOTED([KZ_HOST_VENDOR],["$host_vendor"],[The host vendor])
++AC_DEFINE_UNQUOTED([KZ_HOST_OS],["$host_os"],[The host OS])
++AC_DEFINE_UNQUOTED([KZ_BUILD_ID],["$(TZ=UTC0 date +'%Y%m%d')"],[The build date])
+ 
+ AC_MSG_CHECKING([for native Win32])
+ case "$host" in
+diff -urN kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.cpp kazehakase-0.5.5/module/embed/gecko/KzXULAppInfo.cpp
+--- kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.cpp	1970-01-01 01:00:00.000000000 +0100
++++ kazehakase-0.5.5/module/embed/gecko/KzXULAppInfo.cpp	2008-07-31 12:17:39.000000000 +0200
+@@ -0,0 +1,130 @@
++/*
++ *  Copyright © 2008 Christian Persch
++ *
++ *  This program is free software; you can redistribute it and/or modify
++ *  it under the terms of the GNU General Public License as published by
++ *  the Free Software Foundation; either version 2, or (at your option)
++ *  any later version.
++ *
++ *  This program is distributed in the hope that it will be useful,
++ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *  GNU General Public License for more details.
++ *
++ *  You should have received a copy of the GNU General Public License
++ *  along with this program; if not, write to the Free Software
++ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
++ */
++
++#include "mozilla-config.h"
++#include "config.h"
++
++#include <nsStringGlue.h>
++
++#include "KzXULAppInfo.h"
++
++NS_IMPL_ISUPPORTS2 (KzXULAppInfo, nsIXULRuntime, nsIXULAppInfo)
++
++KzXULAppInfo::KzXULAppInfo ()
++  : mLogConsoleErrors (PR_TRUE)
++{
++}
++
++KzXULAppInfo::~KzXULAppInfo ()
++{
++}
++
++/* readonly attribute ACString vendor; */
++NS_IMETHODIMP
++KzXULAppInfo::GetVendor(nsACString & aVendor)
++{
++  aVendor.Assign ("Kazehakase");
++  return NS_OK;
++}
++
++/* readonly attribute ACString name; */
++NS_IMETHODIMP
++KzXULAppInfo::GetName(nsACString & aName)
++{
++  aName.Assign ("Kazehakase Web Browser");
++  return NS_OK;
++}
++
++/* readonly attribute ACString ID; */
++NS_IMETHODIMP
++KzXULAppInfo::GetID(nsACString & aID)
++{
++  aID.Assign ("{8cbd4d83-3182-4d7e-9889-a8d77bf1f205}");
++  return NS_OK;
++}
++
++/* readonly attribute ACString version; */
++NS_IMETHODIMP
++KzXULAppInfo::GetVersion(nsACString & aVersion)
++{
++  aVersion.Assign (VERSION);
++  return NS_OK;
++}
++
++/* readonly attribute ACString appBuildID; */
++NS_IMETHODIMP
++KzXULAppInfo::GetAppBuildID(nsACString & aAppBuildID)
++{
++  aAppBuildID.Assign (KZ_BUILD_ID);
++  return NS_OK;
++}
++
++/* readonly attribute ACString platformVersion; */
++NS_IMETHODIMP
++KzXULAppInfo::GetPlatformVersion(nsACString & aPlatformVersion)
++{
++  aPlatformVersion.Assign ("1.9");
++  return NS_OK;
++}
++
++/* readonly attribute ACString platformBuildID; */
++NS_IMETHODIMP
++KzXULAppInfo::GetPlatformBuildID(nsACString & aPlatformBuildID)
++{
++  aPlatformBuildID.Assign (KZ_BUILD_ID);
++  return NS_OK;
++}
++
++/* readonly attribute boolean inSafeMode; */
++NS_IMETHODIMP
++KzXULAppInfo::GetInSafeMode(PRBool *aInSafeMode)
++{
++  *aInSafeMode = PR_FALSE;
++  return NS_OK;
++}
++
++/* attribute boolean logConsoleErrors; */
++NS_IMETHODIMP
++KzXULAppInfo::GetLogConsoleErrors(PRBool *aLogConsoleErrors)
++{
++  *aLogConsoleErrors = mLogConsoleErrors;
++  return NS_OK;
++}
++
++NS_IMETHODIMP
++KzXULAppInfo::SetLogConsoleErrors(PRBool aLogConsoleErrors)
++{
++  mLogConsoleErrors = aLogConsoleErrors;
++  return NS_OK;
++}
++
++/* readonly attribute AUTF8String OS; */
++NS_IMETHODIMP
++KzXULAppInfo::GetOS(nsACString & aOS)
++{
++  aOS.Assign (KZ_HOST_OS);
++  return NS_OK;
++}
++
++/* readonly attribute AUTF8String XPCOMABI; */
++NS_IMETHODIMP
++KzXULAppInfo::GetXPCOMABI(nsACString & aXPCOMABI)
++{
++  aXPCOMABI.Assign (KZ_HOST_CPU "-gcc3");
++  return NS_OK;
++}
+diff -urN kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.h kazehakase-0.5.5/module/embed/gecko/KzXULAppInfo.h
+--- kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.h	1970-01-01 01:00:00.000000000 +0100
++++ kazehakase-0.5.5/module/embed/gecko/KzXULAppInfo.h	2008-07-31 12:16:12.000000000 +0200
+@@ -0,0 +1,48 @@
++/*
++ *  Copyright © 2008 Christian Persch
++ *
++ *  This program is free software; you can redistribute it and/or modify
++ *  it under the terms of the GNU General Public License as published by
++ *  the Free Software Foundation; either version 2, or (at your option)
++ *  any later version.
++ *
++ *  This program is distributed in the hope that it will be useful,
++ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *  GNU General Public License for more details.
++ *
++ *  You should have received a copy of the GNU General Public License
++ *  along with this program; if not, write to the Free Software
++ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
++ */
++
++#ifndef KZ_XUL_APP_INFO_H
++#define KZ_XUL_APP_INFO_H
++
++#include <nsIXULAppInfo.h>
++#include <nsIXULRuntime.h>
++
++#include <nsAutoPtr.h>
++#include <nsCOMPtr.h>
++
++#define KZ_XUL_APP_INFO_CLASSNAME	"Kazehakase XUL App Info"
++
++/* 3032bcd2-663c-4583-88bf-6f251123f6dd */
++#define KZ_XUL_APP_INFO_CID { 0x3032bcd2, 0x663c, 0x4583, { 0x88, 0xbf, 0x6f, 0x25, 0x11, 0x23, 0xf6, 0xdd } }
++
++class KzXULAppInfo : public nsIXULAppInfo,
++                       public nsIXULRuntime
++{
++	public:
++		KzXULAppInfo ();
++		virtual ~KzXULAppInfo();
++
++		NS_DECL_ISUPPORTS
++                NS_DECL_NSIXULAPPINFO
++                NS_DECL_NSIXULRUNTIME
++
++	private:
++                PRBool mLogConsoleErrors;
++};
++
++#endif /* KZ_XUL_APP_INFO_H */
+diff -urN kazehakase-0.5.5.orig/module/embed/gecko/Makefile.am kazehakase-0.5.5/module/embed/gecko/Makefile.am
+--- kazehakase-0.5.5.orig/module/embed/gecko/Makefile.am	2008-07-29 16:15:30.000000000 +0200
++++ kazehakase-0.5.5/module/embed/gecko/Makefile.am	2008-07-31 12:37:56.000000000 +0200
+@@ -61,6 +61,7 @@
+ 	-I$(MOZILLA_INCLUDE_ROOT)/windowwatcher \
+ 	-I$(MOZILLA_INCLUDE_ROOT)/xmlextras \
+ 	-I$(MOZILLA_INCLUDE_ROOT)/xpcom \
++	-I$(MOZILLA_INCLUDE_ROOT)/xulapp \
+ 	$(GTK_CFLAGS) \
+ 	-I$(top_builddir)/src \
+ 	-I$(top_srcdir)/src \
+@@ -76,6 +77,7 @@
+ 	kz-gecko-embed.cpp kz-gecko-embed.h \
+ 	kz-gecko-single.cpp kz-gecko-single.h \
+ 	GtkPromptService.cpp GtkPromptService.h \
++	KzXULAppInfo.cpp KzXULAppInfo.h \
+ 	mozilla.cpp mozilla.h \
+ 	mozilla-prefs.cpp mozilla-prefs.h \
+ 	kz-mozdownloader.cpp kz-mozdownloader.h \
+diff -urN kazehakase-0.5.5.orig/module/embed/gecko/mozilla.cpp kazehakase-0.5.5/module/embed/gecko/mozilla.cpp
+--- kazehakase-0.5.5.orig/module/embed/gecko/mozilla.cpp	2008-07-29 16:15:30.000000000 +0200
++++ kazehakase-0.5.5/module/embed/gecko/mozilla.cpp	2008-07-31 12:38:07.000000000 +0200
+@@ -53,6 +53,8 @@
+ #endif
+ #ifdef HAVE_GECKO_1_9
+ #  include <nsComponentManagerUtils.h>
++#  include <nsXULAppAPI.h>
++#  include "KzXULAppInfo.h"
+ #endif
+ 
+ NS_GENERIC_FACTORY_CONSTRUCTOR(KzFilePicker)
+@@ -64,8 +66,19 @@
+ #ifdef HAVE_NSIBADCERTLISTENER_H
+ NS_GENERIC_FACTORY_CONSTRUCTOR(GtkNSSDialogs)
+ #endif
++#ifdef HAVE_GECKO_1_9
++NS_GENERIC_FACTORY_CONSTRUCTOR(KzXULAppInfo)
++#endif
+ 
+ static const nsModuleComponentInfo sAppComps[] = {
++#ifdef HAVE_GECKO_1_9
++	{
++		KZ_XUL_APP_INFO_CLASSNAME,
++		KZ_XUL_APP_INFO_CID,
++		XULAPPINFO_SERVICE_CONTRACTID,
++		KzXULAppInfoConstructor
++	},
++#endif
+ 	{
+ 		KZ_DOWNLOAD_CLASSNAME,
+ 		KZ_DOWNLOAD_CID,

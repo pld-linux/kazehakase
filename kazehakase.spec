@@ -1,5 +1,9 @@
 #
-#Conditional builds
+#   - force kazehakase to use old SSL dialogs using nsIBadCertListener, ie. port
+#     EphyBadCertRejector from Epiphany, this will fix issues with https sites
+#     using self signed and expired certificates or mismatches in domain names
+#
+# Conditional builds
 %bcond_without	gecko	# build without gecko support
 %bcond_without	webkit	# build without webkit support
 #
@@ -7,7 +11,7 @@ Summary:	A browser with multiple rendering engines support
 Summary(pl.UTF-8):	Przeglądarka obsługująca wiele silników renderujących
 Name:		kazehakase
 Version:	0.5.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.sourceforge.jp/kazehakase/32341/%{name}-%{version}.tar.gz
@@ -17,6 +21,7 @@ Patch1:		%{name}-deprecated.patch
 Patch2:		%{name}-ti-agent.patch
 Patch3:		%{name}-agent.patch
 Patch4:		%{name}-libxul.patch
+Patch5:		%{name}-xulappinfo.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -92,6 +97,7 @@ Ta wtyczka dodaje obsługę silnika renderującego webkit.
 %patch3 -p1
 %endif
 %patch4 -p1
+%patch5 -p1
 
 %build
 %{__libtoolize}

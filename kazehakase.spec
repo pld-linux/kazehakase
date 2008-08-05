@@ -105,7 +105,7 @@ Ta wtyczka dodaje obsługę silnika renderującego webkit.
 %{__autoconf}
 %{__automake}
 %configure \
-	%{!?with_gecko:--disable-gecko}
+	%{!?with_gecko:--disable-gecko} \
 	%{!?with_webkit:--disable-webkit}
 
 %{__make}

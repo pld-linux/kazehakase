@@ -1,6 +1,6 @@
-diff -urN kazehakase-0.5.5.orig/configure.ac kazehakase-0.5.5/configure.ac
---- kazehakase-0.5.5.orig/configure.ac	2008-07-29 16:15:32.000000000 +0200
-+++ kazehakase-0.5.5/configure.ac	2008-07-31 12:19:21.000000000 +0200
+diff -urN kazehakase-0.5.6.orig/configure.ac kazehakase-0.5.6/configure.ac
+--- kazehakase-0.5.6.orig/configure.ac	2008-10-28 16:09:19.000000000 +0100
++++ kazehakase-0.5.6/configure.ac	2008-11-05 12:59:48.000000000 +0100
 @@ -6,6 +6,11 @@
  AM_CONFIG_HEADER(config.h)
  
@@ -13,9 +13,9 @@ diff -urN kazehakase-0.5.5.orig/configure.ac kazehakase-0.5.5/configure.ac
  
  AC_MSG_CHECKING([for native Win32])
  case "$host" in
-diff -urN kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.cpp kazehakase-0.5.5/module/embed/gecko/KzXULAppInfo.cpp
---- kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ kazehakase-0.5.5/module/embed/gecko/KzXULAppInfo.cpp	2008-07-31 12:17:39.000000000 +0200
+diff -urN kazehakase-0.5.6.orig/module/embed/gecko/KzXULAppInfo.cpp kazehakase-0.5.6/module/embed/gecko/KzXULAppInfo.cpp
+--- kazehakase-0.5.6.orig/module/embed/gecko/KzXULAppInfo.cpp	1970-01-01 01:00:00.000000000 +0100
++++ kazehakase-0.5.6/module/embed/gecko/KzXULAppInfo.cpp	2008-11-05 12:59:48.000000000 +0100
 @@ -0,0 +1,130 @@
 +/*
 + *  Copyright © 2008 Christian Persch
@@ -147,9 +147,9 @@ diff -urN kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.cpp kazehakase-0
 +  aXPCOMABI.Assign (KZ_HOST_CPU "-gcc3");
 +  return NS_OK;
 +}
-diff -urN kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.h kazehakase-0.5.5/module/embed/gecko/KzXULAppInfo.h
---- kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.h	1970-01-01 01:00:00.000000000 +0100
-+++ kazehakase-0.5.5/module/embed/gecko/KzXULAppInfo.h	2008-07-31 12:16:12.000000000 +0200
+diff -urN kazehakase-0.5.6.orig/module/embed/gecko/KzXULAppInfo.h kazehakase-0.5.6/module/embed/gecko/KzXULAppInfo.h
+--- kazehakase-0.5.6.orig/module/embed/gecko/KzXULAppInfo.h	1970-01-01 01:00:00.000000000 +0100
++++ kazehakase-0.5.6/module/embed/gecko/KzXULAppInfo.h	2008-11-05 12:59:48.000000000 +0100
 @@ -0,0 +1,48 @@
 +/*
 + *  Copyright © 2008 Christian Persch
@@ -199,9 +199,9 @@ diff -urN kazehakase-0.5.5.orig/module/embed/gecko/KzXULAppInfo.h kazehakase-0.5
 +};
 +
 +#endif /* KZ_XUL_APP_INFO_H */
-diff -urN kazehakase-0.5.5.orig/module/embed/gecko/Makefile.am kazehakase-0.5.5/module/embed/gecko/Makefile.am
---- kazehakase-0.5.5.orig/module/embed/gecko/Makefile.am	2008-07-29 16:15:30.000000000 +0200
-+++ kazehakase-0.5.5/module/embed/gecko/Makefile.am	2008-07-31 12:37:56.000000000 +0200
+diff -urN kazehakase-0.5.6.orig/module/embed/gecko/Makefile.am kazehakase-0.5.6/module/embed/gecko/Makefile.am
+--- kazehakase-0.5.6.orig/module/embed/gecko/Makefile.am	2008-10-28 16:09:11.000000000 +0100
++++ kazehakase-0.5.6/module/embed/gecko/Makefile.am	2008-11-05 12:59:48.000000000 +0100
 @@ -61,6 +61,7 @@
  	-I$(MOZILLA_INCLUDE_ROOT)/windowwatcher \
  	-I$(MOZILLA_INCLUDE_ROOT)/xmlextras \
@@ -218,10 +218,10 @@ diff -urN kazehakase-0.5.5.orig/module/embed/gecko/Makefile.am kazehakase-0.5.5/
  	mozilla.cpp mozilla.h \
  	mozilla-prefs.cpp mozilla-prefs.h \
  	kz-mozdownloader.cpp kz-mozdownloader.h \
-diff -urN kazehakase-0.5.5.orig/module/embed/gecko/mozilla.cpp kazehakase-0.5.5/module/embed/gecko/mozilla.cpp
---- kazehakase-0.5.5.orig/module/embed/gecko/mozilla.cpp	2008-07-29 16:15:30.000000000 +0200
-+++ kazehakase-0.5.5/module/embed/gecko/mozilla.cpp	2008-07-31 12:38:07.000000000 +0200
-@@ -53,6 +53,8 @@
+diff -urN kazehakase-0.5.6.orig/module/embed/gecko/mozilla.cpp kazehakase-0.5.6/module/embed/gecko/mozilla.cpp
+--- kazehakase-0.5.6.orig/module/embed/gecko/mozilla.cpp	2008-10-28 16:09:11.000000000 +0100
++++ kazehakase-0.5.6/module/embed/gecko/mozilla.cpp	2008-11-05 13:01:25.000000000 +0100
+@@ -54,6 +54,8 @@
  #endif
  #ifdef HAVE_GECKO_1_9
  #  include <nsComponentManagerUtils.h>
@@ -230,17 +230,17 @@ diff -urN kazehakase-0.5.5.orig/module/embed/gecko/mozilla.cpp kazehakase-0.5.5/
  #endif
  
  NS_GENERIC_FACTORY_CONSTRUCTOR(KzFilePicker)
-@@ -64,8 +66,19 @@
- #ifdef HAVE_NSIBADCERTLISTENER_H
+@@ -66,8 +68,19 @@
  NS_GENERIC_FACTORY_CONSTRUCTOR(GtkNSSDialogs)
  #endif
+ NS_GENERIC_FACTORY_CONSTRUCTOR(KzMozCookiePromptService)
 +#ifdef HAVE_GECKO_1_9
 +NS_GENERIC_FACTORY_CONSTRUCTOR(KzXULAppInfo)
 +#endif
  
  static const nsModuleComponentInfo sAppComps[] = {
 +#ifdef HAVE_GECKO_1_9
-+	{
++       {
 +		KZ_XUL_APP_INFO_CLASSNAME,
 +		KZ_XUL_APP_INFO_CID,
 +		XULAPPINFO_SERVICE_CONTRACTID,

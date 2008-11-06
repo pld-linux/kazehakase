@@ -146,12 +146,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/embed
 
-%if %{with_gecko}
+%if %{with gecko}
 %files plugin-gecko
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/%{name}/embed/gecko.so
 %endif
-%if %{with_webkit}
+%if %{with webkit}
 %files plugin-webkit
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/%{name}/embed/webkit_gtk.so

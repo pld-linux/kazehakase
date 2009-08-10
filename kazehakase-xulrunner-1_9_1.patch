@@ -1,0 +1,10 @@
+--- kazehakase-0.5.6/module/embed/gecko/mozilla.cpp	2009-08-11 00:46:29.000000000 +0200
++++ kazehakase-0.5.6/module/embed/gecko/mozilla.cpp	2009-08-11 00:55:18.654916250 +0200
+@@ -55,6 +55,7 @@
+ #ifdef HAVE_GECKO_1_9
+ #  include <nsComponentManagerUtils.h>
+ #  include <nsXULAppAPI.h>
++#  include <nsXPCOMCIDInternal.h>
+ #  include "KzXULAppInfo.h"
+ #endif
+ 

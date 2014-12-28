@@ -27,7 +27,7 @@ Patch7:		%{name}-xulrunner-1_9_1.patch
 URL:		http://kazehakase.sourceforge.jp/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gnutls-devel
 BuildRequires:	gtk+2-devel
 %{?with_webkit:BuildRequires:	gtk-webkit-devel}
